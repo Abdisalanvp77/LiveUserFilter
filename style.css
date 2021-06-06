@@ -96,3 +96,11 @@ img {
 .users-list li.hide {
   display: none;
 }
+
+.fa-circle-notch {
+  font-size: xx-large;
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  right: 50%;
+}

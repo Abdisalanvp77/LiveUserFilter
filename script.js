@@ -1,9 +1,9 @@
 const searchEl = document.querySelector('.searchbox')
 const div = document.querySelector('.users-list');
 let usersList;
-
+let loading = true;
 // showUsers(usersList);
-fetchData();
+// fetchData();
 
 searchEl.addEventListener('keyup', (e) => {
     let searcTerm = e.target.value;
@@ -11,8 +11,16 @@ searchEl.addEventListener('keyup', (e) => {
 });
 
 async function fetchData() {
+    if (loading) {
+        div.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i>`;
+    }
+    
     const res =  await fetch('https://randomuser.me/api?results=50');
     const { results } = await res.json();
+    if (results) {
+        loading = false;
+        div.innerHTML = '';
+    }
     // clear result
     showUsers(results);
     usersList = results;
